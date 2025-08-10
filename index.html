@@ -17,9 +17,73 @@
     <!-- Landing screen -->
     <section id="landing" class="card">
       <h2>Practice the 10 must-know tests</h2>
-      <p class="muted">Quick sessions. Immediate feedback. Built for phones.</p>
       <div class="actions">
         <button id="start" class="btn btn-primary">Start Practice</button>
+        <button id="study" class="btn btn-ghost">Study Reference</button>
+      </div>
+    </section>
+
+    <!-- Study Reference page -->
+    <section id="studyPage" class="card hidden" role="region" aria-live="polite">
+      <h2>Study Reference</h2>
+      <p class="muted">All 10 tests with their corresponding tube colors and inversions</p>
+      
+      <div class="reference-list">
+        <div class="reference-item" data-tube="light-blue">
+          <div class="tube-color light-blue">
+            <div class="tube-top"></div>
+            <div class="tube-body"></div>
+          </div>
+          <div class="test-info">
+            <h3>Light Blue Tubes</h3>
+            <div class="additive">Sodium Citrate</div>
+            <div class="inversions">3-4 inversions</div>
+            <div class="tests">
+              <div class="test">• D-Dimer</div>
+              <div class="test">• PT-INR</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reference-item" data-tube="plain-red">
+          <div class="tube-color plain-red">
+            <div class="tube-top"></div>
+            <div class="tube-body"></div>
+          </div>
+          <div class="test-info">
+            <h3>Plain Red Tubes</h3>
+            <div class="additive">No Additive</div>
+            <div class="inversions">5-7 inversions</div>
+            <div class="tests">
+              <div class="test">• Lipid Panel</div>
+              <div class="test">• FSH</div>
+              <div class="test">• Thyroid Panel</div>
+              <div class="test">• CMP</div>
+              <div class="test">• Iron / TIBC</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reference-item" data-tube="lavender">
+          <div class="tube-color lavender">
+            <div class="tube-top"></div>
+            <div class="tube-body"></div>
+          </div>
+          <div class="test-info">
+            <h3>Lavender Tubes</h3>
+            <div class="additive">EDTA K2</div>
+            <div class="inversions">8-10 inversions</div>
+            <div class="tests">
+              <div class="test">• Reticulocyte Count (Retic)</div>
+              <div class="test">• JAK-2</div>
+              <div class="test">• Homocysteine</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="backToLandingStudy" class="btn btn-primary">Back to Home</button>
       </div>
     </section>
 
@@ -28,6 +92,11 @@
       <div class="row">
         <div class="label">Test</div>
         <div id="question" class="value"></div>
+      </div>
+
+      <div class="row">
+        <div class="label">Progress</div>
+        <div id="progress" class="value">Question 1</div>
       </div>
 
       <div class="row">
@@ -47,10 +116,42 @@
       <div class="actions">
         <button id="check" class="btn">Check</button>
         <button id="next" class="btn btn-ghost">Next</button>
-        <button id="restart" class="btn btn-ghost right">End Session</button>
+        <button id="endSession" class="btn btn-ghost right">End Session</button>
       </div>
 
       <div id="feedback" class="feedback" role="status"></div>
+    </section>
+
+    <!-- Grade page -->
+    <section id="gradePage" class="card hidden" role="region" aria-live="polite">
+      <h2>Session Complete!</h2>
+      
+      <div class="grade-summary">
+        <div class="grade-display">
+          <span id="gradePercent" class="grade-percent">0%</span>
+          <span id="gradeLetter" class="grade-letter">F</span>
+        </div>
+        <div class="grade-stats">
+          <div class="stat">
+            <span class="stat-label">Correct:</span>
+            <span id="correctCount" class="stat-value">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Total:</span>
+            <span id="totalCount" class="stat-value">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="missedQuestions" class="missed-questions">
+        <h3>Questions Missed:</h3>
+        <div id="missedList" class="missed-list"></div>
+      </div>
+
+      <div class="actions">
+        <button id="newSession" class="btn btn-primary">New Session</button>
+        <button id="backToLanding" class="btn btn-ghost">Back to Home</button>
+      </div>
     </section>
   </main>
 

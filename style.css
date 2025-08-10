@@ -54,6 +54,18 @@
   .field{width:100%}
   .field:focus, .btn:focus{outline:3px solid var(--focus);outline-offset:2px}
   
+  /* disabled state */
+  .field:disabled, .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #1a1a1a;
+    color: var(--muted);
+  }
+  
+  .btn:disabled:hover {
+    transform: none;
+  }
+  
   /* buttons */
   .actions{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
   .btn{cursor:pointer;transition:transform .02s ease}
@@ -64,6 +76,199 @@
   
   /* feedback */
   .feedback{margin-top:.5rem;min-height:1.5rem;font-weight:600}
+  
+  /* grade page */
+  .grade-summary {
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+  
+  .grade-display {
+    margin-bottom: 1rem;
+  }
+  
+  .grade-percent {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  
+  .grade-letter {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-left: 0.5rem;
+  }
+  
+  .grade-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-label {
+    display: block;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  
+  .missed-questions {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  
+  .missed-questions h3 {
+    margin: 0 0 1rem 0;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  
+  .missed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .missed-item {
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid #ef4444;
+  }
+  
+  .missed-question {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .missed-answer {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  
+  .missed-correct {
+    color: var(--accent);
+    font-size: 0.9rem;
+  }
+  
+  /* study reference page */
+  .reference-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .reference-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  
+  .tube-color {
+    flex-shrink: 0;
+    width: 60px;
+    height: 120px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tube-top {
+    width: 100%;
+    height: 20px;
+    border-radius: 8px 8px 0 0;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: none;
+  }
+  
+  .tube-body {
+    width: 100%;
+    height: 100px;
+    border-radius: 0 0 8px 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-top: none;
+  }
+  
+  /* Light Blue Tube */
+  .tube-color.light-blue .tube-top {
+    background: #87ceeb;
+  }
+  .tube-color.light-blue .tube-body {
+    background: #87ceeb;
+  }
+  
+  /* Plain Red Tube */
+  .tube-color.plain-red .tube-top {
+    background: #dc143c;
+  }
+  .tube-color.plain-red .tube-body {
+    background: #dc143c;
+  }
+  
+  /* Lavender Tube */
+  .tube-color.lavender .tube-top {
+    background: #e6e6fa;
+  }
+  .tube-color.lavender .tube-body {
+    background: #e6e6fa;
+  }
+  
+  .test-info {
+    flex: 1;
+  }
+  
+  .test-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text);
+    font-size: 1.1rem;
+  }
+  
+  .additive {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+  
+  .inversions {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+  
+  .tests {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .test {
+    color: var(--text);
+    font-size: 0.9rem;
+    padding: 0.25rem 0;
+  }
   
   /* helpers */
   .hidden{display:none}
