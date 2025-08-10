@@ -148,27 +148,55 @@ const tubes = [
         addMobileFriendlyEvents(btn, 'click', handleButtonClick);
       });
   
-      // Restore previous selections for this test
+      // Restore previous selections for this test BEFORE appending to DOM
       const tid = t.id;
       if (selections[tid]) {
+        console.log(`Restoring selections for test ${tid}:`, selections[tid]);
+        
         if (selections[tid].tubeId) {
-          const tubeBtn = card.querySelector(`.btn-option[data-kind="tube"][data-value="${selections[tid].tubeId}"]`);
-          if (tubeBtn) tubeBtn.classList.add('selected');
+          const tubeBtn = card.querySelector(`[data-kind="tube"][data-value="${selections[tid].tubeId}"]`);
+          if (tubeBtn) {
+            tubeBtn.classList.add('selected');
+            console.log(`✓ Restored tube selection: ${tid} -> ${selections[tid].tubeId}`);
+          } else {
+            console.log(`✗ Could not find tube button for ${selections[tid].tubeId}`);
+          }
         }
+        
         if (selections[tid].inversions) {
-          const invBtn = card.querySelector(`.btn-option[data-kind="inv"][data-value="${selections[tid].inversions}"]`);
-          if (invBtn) invBtn.classList.add('selected');
+          const invBtn = card.querySelector(`[data-kind="inv"][data-value="${selections[tid].inversions}"]`);
+          if (invBtn) {
+            invBtn.classList.add('selected');
+            console.log(`✓ Restored inversion selection: ${tid} -> ${selections[tid].inversions}`);
+          } else {
+            console.log(`✗ Could not find inversion button for ${selections[tid].inversions}`);
+          }
         }
+      } else {
+        console.log(`No selections found for test ${tid}`);
       }
   
       pairCard.appendChild(card);
     });
+    
+    // Debug: log current selections after rendering
+    console.log('Current selections after render:', selections);
   }
   
   addMobileFriendlyEvents(swapBtn, 'click', () => {
     if (pair.length !== 2) return;
+    
+    console.log('=== SWAP DEBUG ===');
+    console.log('Before swap - selections:', JSON.stringify(selections, null, 2));
+    console.log('Before swap - pair:', pair.map(t => ({ id: t.id, name: t.name })));
+    
     // swap array order and re-render
     [pair[0], pair[1]] = [pair[1], pair[0]];
+    
+    console.log('After swap - pair:', pair.map(t => ({ id: t.id, name: t.name })));
+    console.log('After swap - selections:', JSON.stringify(selections, null, 2));
+    console.log('=== END SWAP DEBUG ===');
+    
     renderPairCards();
   });
   
