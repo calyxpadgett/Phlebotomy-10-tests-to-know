@@ -100,22 +100,26 @@
       </div>
 
       <div class="row">
-        <label for="tube" class="label">Tube</label>
-        <select id="tube" class="field">
-          <option value="">-- Select Tube --</option>
-        </select>
+        <label class="label">Tube</label>
+        <div class="button-group" id="tubeButtons">
+          <button class="btn btn-option" data-value="light-blue">Light Blue</button>
+          <button class="btn btn-option" data-value="plain-red">Plain Red</button>
+          <button class="btn btn-option" data-value="lavender">Lavender</button>
+        </div>
       </div>
 
       <div class="row">
-        <label for="inversions" class="label">Inversions</label>
-        <select id="inversions" class="field">
-          <option value="">-- Select Inversions --</option>
-        </select>
+        <label class="label">Inversions</label>
+        <div class="button-group" id="inversionButtons">
+          <button class="btn btn-option" data-value="3-4">3-4</button>
+          <button class="btn btn-option" data-value="5-7">5-7</button>
+          <button class="btn btn-option" data-value="8-10">8-10</button>
+        </div>
       </div>
 
       <div class="actions">
-        <button id="check" class="btn">Check</button>
-        <button id="next" class="btn btn-ghost">Next</button>
+        <button id="check" class="btn btn-full">Check</button>
+        <button id="next" class="btn btn-full hidden">Next</button>
         <button id="endSession" class="btn btn-ghost right">End Session</button>
       </div>
 

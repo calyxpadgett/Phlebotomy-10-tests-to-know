@@ -30,8 +30,8 @@ const tubes = [
   const backToLandingStudyBtn = document.getElementById('backToLandingStudy');
   
   const questionEl = document.getElementById('question');
-  const tubeSelect = document.getElementById('tube');
-  const invSelect  = document.getElementById('inversions');
+  const tubeButtons = document.getElementById('tubeButtons');
+  const inversionButtons = document.getElementById('inversionButtons');
   const feedbackEl = document.getElementById('feedback');
   const checkBtn   = document.getElementById('check');
   const nextBtn    = document.getElementById('next');
@@ -40,6 +40,8 @@ const tubes = [
   let currentTest;
   let sessionAnswers = [];
   let currentQuestionIndex = 0;
+  let selectedTube = null;
+  let selectedInversion = null;
   
   // --- helpers ---
   const rand = arr => arr[Math.floor(Math.random() * arr.length)];
@@ -85,8 +87,8 @@ const tubes = [
     currentQuestionIndex = 0;
     populateOptions();
     loadQuestion();
-    tubeSelect.focus();
     updateProgress();
+    hide(nextBtn);
   }
   
   function updateProgress() {
@@ -137,32 +139,80 @@ const tubes = [
   function loadQuestion(){
     currentTest = rand(tests);
     questionEl.textContent = currentTest.name;
-    tubeSelect.value = '';
-    invSelect.value  = '';
+    selectedTube = null;
+    selectedInversion = null;
     feedbackEl.textContent = '';
     
-    // Re-enable the form fields for the new question
-    tubeSelect.disabled = false;
-    invSelect.disabled = false;
-    checkBtn.disabled = false;
+    // Reset button states for new question
+    updateButtonStates();
+    updateCheckButtonState();
+    // Hide the Next button when loading a new question
+    hide(nextBtn);
   }
   
   function populateOptions(){
-    // tubes
-    tubeSelect.innerHTML = '<option value="">-- Select Tube --</option>';
-    tubes.forEach(t => {
-      tubeSelect.innerHTML += `<option value="${t.id}">${t.color}</option>`;
+    // Clear previous selections
+    selectedTube = null;
+    selectedInversion = null;
+    
+    // Update button states
+    updateButtonStates();
+    
+    // Add click handlers for tube buttons
+    tubeButtons.querySelectorAll('.btn-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        
+        // Remove selection from other tube buttons
+        tubeButtons.querySelectorAll('.btn-option').forEach(b => b.classList.remove('selected'));
+        
+        // Select this button
+        btn.classList.add('selected');
+        selectedTube = btn.dataset.value;
+        
+        // Enable check button if both selections are made
+        updateCheckButtonState();
+      });
     });
+    
+    // Add click handlers for inversion buttons
+    inversionButtons.querySelectorAll('.btn-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        
+        // Remove selection from other inversion buttons
+        inversionButtons.querySelectorAll('.btn-option').forEach(b => b.classList.remove('selected'));
+        
+        // Select this button
+        btn.classList.add('selected');
+        selectedInversion = btn.dataset.value;
+        
+        // Enable check button if both selections are made
+        updateCheckButtonState();
+      });
+    });
+  }
   
-    // inversion choices: keep exact strings as provided
-    const opts = [...new Set(tubes.map(t => t.inversions))];
-    invSelect.innerHTML = '<option value="">-- Select Inversions --</option>';
-    opts.forEach(n => invSelect.innerHTML += `<option value="${n}">${n}</option>`);
+  function updateButtonStates() {
+    // Reset all buttons to unselected state
+    tubeButtons.querySelectorAll('.btn-option').forEach(btn => {
+      btn.classList.remove('selected');
+      btn.disabled = false;
+    });
+    
+    inversionButtons.querySelectorAll('.btn-option').forEach(btn => {
+      btn.classList.remove('selected');
+      btn.disabled = false;
+    });
+  }
+  
+  function updateCheckButtonState() {
+    checkBtn.disabled = !(selectedTube && selectedInversion);
   }
   
   checkBtn.addEventListener('click', () => {
-    const chosenTube = tubes.find(t => t.id === tubeSelect.value);
-    const chosenInv  = invSelect.value;
+    const chosenTube = tubes.find(t => t.id === selectedTube);
+    const chosenInv  = selectedInversion;
     const correctTube = tubes.find(t => t.id === currentTest.tubeId);
   
     if (!chosenTube || !chosenInv){
@@ -189,9 +239,12 @@ const tubes = [
     });
     
     // Disable the form fields after answering
-    tubeSelect.disabled = true;
-    invSelect.disabled = true;
+    tubeButtons.querySelectorAll('.btn-option').forEach(btn => btn.disabled = true);
+    inversionButtons.querySelectorAll('.btn-option').forEach(btn => btn.disabled = true);
     checkBtn.disabled = true;
+    
+    // Show the Next button
+    show(nextBtn);
     
     currentQuestionIndex++;
     updateProgress();
