@@ -24,6 +24,9 @@
   .btn-primary{background:linear-gradient(135deg,var(--accent) 0%,#16a34a 100%);color:var(--accent-ink);border-color:transparent;font-weight:700}
   .btn-ghost{background:rgba(255,255,255,.05)}
   .btn-full{width:100%;font-weight:700}
+  .btn-danger{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border-color:transparent;font-weight:700;box-shadow:0 4px 12px rgba(239,68,68,.3)}
+  .btn-danger:hover{box-shadow:0 6px 16px rgba(239,68,68,.4)}
+  .btn-danger:active{box-shadow:0 2px 8px rgba(239,68,68,.3)}
   .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
   .right{margin-left:auto}
   
@@ -42,6 +45,8 @@
   .quiz-grid .btn-option{min-height:48px;font-weight:600;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .btn-option.selected{background:linear-gradient(135deg,var(--accent),#16a34a);color:var(--accent-ink);border-color:transparent}
   
+  .practice-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem}
+  .round-info{flex:1}
   .main-controls{display:flex;gap:.8rem;align-items:center;margin-top:1rem}
   .next-controls{margin-top:.5rem}
   .session-controls{margin-top:1rem;text-align:center}
@@ -91,6 +96,8 @@
     .quiz-grid{gap:.4rem}
     .quiz-grid .btn-option{min-height:52px;font-size:.95rem}
     .test-card{padding:.8rem}
+    .practice-header{flex-direction:column;gap:.5rem;align-items:stretch}
+    .practice-header .btn-danger{width:100%}
     .main-controls{flex-direction:column;gap:.6rem}
     .main-controls .btn{width:100%}
   }

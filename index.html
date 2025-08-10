@@ -26,9 +26,14 @@
 
     <!-- Practice (one card = two tests + order) -->
     <section id="practice" class="card hidden" role="region" aria-live="polite">
-      <div class="row">
-        <div class="label">Round</div>
-        <div id="qCounter" class="value">1</div>
+      <div class="practice-header">
+        <div class="round-info">
+          <div class="row">
+            <div class="label">Round</div>
+            <div id="qCounter" class="value">1</div>
+          </div>
+        </div>
+        <button id="endSession" class="btn btn-danger">End Session</button>
       </div>
 
       <div id="pairCard" class="pair-card">
@@ -45,10 +50,6 @@
       </div>
 
       <div id="feedback" class="feedback" role="status"></div>
-
-      <div class="session-controls">
-        <button id="endSession" class="btn btn-ghost">End Session</button>
-      </div>
     </section>
 
     <!-- Reference Guide -->
@@ -121,7 +122,7 @@
   </main>
 
   <footer class="site-footer">
-    <div class="wrap"><small class="muted">v0.61 • Built for classmates</small></div>
+    <div class="wrap"><small class="muted">v0.62 • Built for classmates</small></div>
   </footer>
 
   <script src="script.js"></script>
