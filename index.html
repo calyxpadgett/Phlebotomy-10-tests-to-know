@@ -1,29 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phlebotomy 10 Tests Quiz</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phlebotomy 10 Tests to Know</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <h1>Phlebotomy 10 Tests to Know</h1>
-    <div id="question"></div>
-    <label>
-      Tube:
-      <select id="tube"></select>
-    </label>
-    <label>
-      Inversions:
-      <select id="inversions"></select>
-    </label>
-    <div class="buttons">
-      <button id="check">Check</button>
-      <button id="next">Next</button>
+  <header class="site-header">
+    <div class="wrap">
+      <h1>Order-of-Draw Trainer</h1>
     </div>
-    <div id="feedback"></div>
+  </header>
+
+  <main class="wrap">
+    <!-- Landing screen -->
+    <section id="landing" class="card">
+      <h2>Practice the 10 must-know tests</h2>
+      <p class="muted">Quick sessions. Immediate feedback. Built for phones.</p>
+      <div class="actions">
+        <button id="start" class="btn btn-primary">Start Practice</button>
+      </div>
+    </section>
+
+    <!-- Quiz screen -->
+    <section id="quiz" class="card hidden" role="region" aria-live="polite">
+      <div class="row">
+        <div class="label">Test</div>
+        <div id="question" class="value"></div>
+      </div>
+
+      <div class="row">
+        <label for="tube" class="label">Tube</label>
+        <select id="tube" class="field">
+          <option value="">-- Select Tube --</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label for="inversions" class="label">Inversions</label>
+        <select id="inversions" class="field">
+          <option value="">-- Select Inversions --</option>
+        </select>
+      </div>
+
+      <div class="actions">
+        <button id="check" class="btn">Check</button>
+        <button id="next" class="btn btn-ghost">Next</button>
+        <button id="restart" class="btn btn-ghost right">End Session</button>
+      </div>
+
+      <div id="feedback" class="feedback" role="status"></div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <small class="muted">v0.1 • Built for classmates</small>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
