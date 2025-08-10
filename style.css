@@ -17,9 +17,10 @@
   .value{font-size:1.15rem;font-weight:600}
   .muted{color:var(--muted)}
   
-  .btn{font:inherit;border-radius:14px;border:1px solid var(--border);color:var(--text);padding:.75rem 1rem;background:#0b1220;cursor:pointer;transition:.2s transform,.2s box-shadow;min-height:44px}
+  .btn{font:inherit;border-radius:14px;border:1px solid var(--border);color:var(--text);padding:.75rem 1rem;background:#0b1220;cursor:pointer;transition:.2s transform,.2s box-shadow;min-height:44px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.28)}
   .btn:focus{outline:3px solid var(--focus);outline-offset:3px}
+  .btn:active{transform:translateY(0);box-shadow:0 4px 12px rgba(0,0,0,.28)}
   .btn-primary{background:linear-gradient(135deg,var(--accent) 0%,#16a34a 100%);color:var(--accent-ink);border-color:transparent;font-weight:700}
   .btn-ghost{background:rgba(255,255,255,.05)}
   .btn-full{width:100%;font-weight:700}
@@ -34,11 +35,11 @@
   .order-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-weight:700}
   .test-name{font-weight:700}
   
-  /* neutral header bar so we’re not showing the answer */
+  /* neutral header bar so we're not showing the answer */
   .neutral-bar{height:10px;border-radius:6px;background:rgba(255,255,255,.08);border:1px solid var(--border);margin:.25rem 0 .5rem}
   
   .quiz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin:.5rem 0 0}
-  .quiz-grid .btn-option{min-height:48px;font-weight:600}
+  .quiz-grid .btn-option{min-height:48px;font-weight:600;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .btn-option.selected{background:linear-gradient(135deg,var(--accent),#16a34a);color:var(--accent-ink);border-color:transparent}
   
   .order-controls{display:flex;justify-content:center;margin-top:.5rem}
@@ -83,4 +84,17 @@
     .pair-card{grid-template-columns:1fr}
     .row{grid-template-columns:1fr}
     .btn,.btn-full{width:100%}
+    
+    /* Additional mobile improvements */
+    .quiz-grid{gap:.4rem}
+    .quiz-grid .btn-option{min-height:52px;font-size:.95rem}
+    .test-card{padding:.8rem}
+    .actions{gap:.6rem}
+  }
+  
+  /* Touch device specific improvements */
+  @media (hover: none) and (pointer: coarse) {
+    .btn:hover{transform:none;box-shadow:none}
+    .btn:active{transform:translateY(0);box-shadow:0 4px 12px rgba(0,0,0,.28)}
+    .quiz-grid .btn-option{min-height:56px}
   }

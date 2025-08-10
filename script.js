@@ -60,13 +60,25 @@ const tubes = [
   function hide(el){ el.classList.add('hidden'); }
   function showPage(p){ [landing, practice, studyPage, gradePage].forEach(hide); show(p); }
   
+  // Mobile-friendly event handling
+  function addMobileFriendlyEvents(element, eventType, handler) {
+    // Add both click and touch events for mobile compatibility
+    element.addEventListener(eventType, handler);
+    if (eventType === 'click') {
+      element.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Prevent double-firing on mobile
+        handler(e);
+      }, { passive: false });
+    }
+  }
+  
   // nav
-  startPractice.addEventListener('click', () => { startSession(); showPage(practice); });
-  openRef.addEventListener('click', () => showPage(studyPage));
-  backToLandingStudy.addEventListener('click', () => showPage(landing));
-  newSessionBtn.addEventListener('click', () => { startSession(); showPage(practice); });
-  backToLandingBtn.addEventListener('click', () => showPage(landing));
-  endSession.addEventListener('click', () => { renderResults(); showPage(gradePage); });
+  addMobileFriendlyEvents(startPractice, 'click', () => { startSession(); showPage(practice); });
+  addMobileFriendlyEvents(openRef, 'click', () => showPage(studyPage));
+  addMobileFriendlyEvents(backToLandingStudy, 'click', () => showPage(landing));
+  addMobileFriendlyEvents(newSessionBtn, 'click', () => { startSession(); showPage(practice); });
+  addMobileFriendlyEvents(backToLandingBtn, 'click', () => showPage(landing));
+  addMobileFriendlyEvents(endSession, 'click', () => { renderResults(); showPage(gradePage); });
   
   // session
   function startSession(){
@@ -117,9 +129,9 @@ const tubes = [
         </div>
       `;
   
-      // handlers for this card's buttons
+      // handlers for this card's buttons with mobile-friendly events
       card.querySelectorAll('.btn-option').forEach(btn => {
-        btn.addEventListener('click', () => {
+        const handleButtonClick = () => {
           const kind = btn.dataset.kind; // 'tube' or 'inv'
           const val  = btn.dataset.value;
           // deselect within this card + kind
@@ -130,14 +142,17 @@ const tubes = [
           selections[tid] = selections[tid] || {};
           if (kind === 'tube') selections[tid].tubeId = val;
           else selections[tid].inversions = val;
-        });
+        };
+        
+        // Add both click and touch events for mobile compatibility
+        addMobileFriendlyEvents(btn, 'click', handleButtonClick);
       });
   
       pairCard.appendChild(card);
     });
   }
   
-  swapBtn.addEventListener('click', () => {
+  addMobileFriendlyEvents(swapBtn, 'click', () => {
     if (pair.length !== 2) return;
     // swap array order and re-render
     [pair[0], pair[1]] = [pair[1], pair[0]];
@@ -145,7 +160,7 @@ const tubes = [
   });
   
   // grading
-  checkRound.addEventListener('click', () => {
+  addMobileFriendlyEvents(checkRound, 'click', () => {
     // ensure both test selections are made (tube + inversions)
     for (const t of pair){
       const sel = selections[t.id];
@@ -200,7 +215,7 @@ const tubes = [
     roundIndex++;
   });
   
-  nextRound.addEventListener('click', loadRound);
+  addMobileFriendlyEvents(nextRound, 'click', loadRound);
   
   function shortName(name){
     if (name.startsWith('Reticulocyte')) return 'Retic';
@@ -215,7 +230,7 @@ const tubes = [
   }
   
   // results
-  endSession.addEventListener('click', () => { renderResults(); showPage(gradePage); });
+  addMobileFriendlyEvents(endSession, 'click', () => { renderResults(); showPage(gradePage); });
   
   function renderResults(){
     const total = sessionAnswers.length; // 3 entries per round
