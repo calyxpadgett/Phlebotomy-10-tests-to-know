@@ -14,70 +14,74 @@
   </header>
 
   <main class="wrap">
-    <!-- Landing screen -->
+    <!-- Landing -->
     <section id="landing" class="card">
       <h2>Practice the 10 must-know tests</h2>
+      <p class="muted">Each round: for both tests, pick tube + inversions, then set their order of draw.</p>
       <div class="actions">
-        <button id="start" class="btn btn-primary">Start Practice</button>
-        <button id="study" class="btn btn-ghost">Study Reference</button>
+        <button id="startPractice" class="btn btn-primary">Start Practice</button>
+        <button id="openRef" class="btn btn-ghost">Reference Guide</button>
       </div>
     </section>
 
-    <!-- Study Reference page -->
+    <!-- Practice (one card = two tests + order) -->
+    <section id="practice" class="card hidden" role="region" aria-live="polite">
+      <div class="row">
+        <div class="label">Round</div>
+        <div id="qCounter" class="value">1</div>
+      </div>
+
+      <div id="pairCard" class="pair-card">
+        <!-- test cards injected here -->
+      </div>
+
+      <div class="order-controls">
+        <button id="swapBtn" class="btn btn-ghost">↕️ Swap Test Order</button>
+      </div>
+
+      <div class="actions">
+        <button id="checkRound" class="btn btn-full">Check Round</button>
+        <button id="nextRound" class="btn btn-full hidden">Next Round</button>
+        <button id="endSession" class="btn btn-ghost right">End Session</button>
+      </div>
+
+      <div id="feedback" class="feedback" role="status"></div>
+    </section>
+
+    <!-- Reference Guide -->
     <section id="studyPage" class="card hidden" role="region" aria-live="polite">
-      <h2>Study Reference</h2>
-      <p class="muted">All 10 tests with their corresponding tube colors and inversions</p>
-      
+      <h2>Reference Guide</h2>
+      <p class="muted">All 10 tests with tube color and inversions (exact strings).</p>
+
       <div class="reference-list">
-        <div class="reference-item" data-tube="light-blue">
-          <div class="tube-color light-blue">
-            <div class="tube-top"></div>
-            <div class="tube-body"></div>
-          </div>
+        <!-- Light Blue -->
+        <div class="reference-item">
+          <div class="tube-color light-blue"><div class="tube-top"></div><div class="tube-body"></div></div>
           <div class="test-info">
-            <h3>Light Blue Tubes</h3>
-            <div class="additive">Sodium Citrate</div>
+            <h3>Light Blue — Sodium Citrate</h3>
             <div class="inversions">3-4 inversions</div>
-            <div class="tests">
-              <div class="test">• D-Dimer</div>
-              <div class="test">• PT-INR</div>
-            </div>
+            <div class="tests"><div class="test">• D-Dimer</div><div class="test">• PT-INR</div></div>
           </div>
         </div>
-
-        <div class="reference-item" data-tube="plain-red">
-          <div class="tube-color plain-red">
-            <div class="tube-top"></div>
-            <div class="tube-body"></div>
-          </div>
+        <!-- Plain Red -->
+        <div class="reference-item">
+          <div class="tube-color plain-red"><div class="tube-top"></div><div class="tube-body"></div></div>
           <div class="test-info">
-            <h3>Plain Red Tubes</h3>
-            <div class="additive">No Additive</div>
+            <h3>Plain Red — No Additive</h3>
             <div class="inversions">5-7 inversions</div>
             <div class="tests">
-              <div class="test">• Lipid Panel</div>
-              <div class="test">• FSH</div>
-              <div class="test">• Thyroid Panel</div>
-              <div class="test">• CMP</div>
-              <div class="test">• Iron / TIBC</div>
+              <div class="test">• Lipid Panel</div><div class="test">• FSH</div>
+              <div class="test">• Thyroid Panel</div><div class="test">• CMP</div><div class="test">• Iron / TIBC</div>
             </div>
           </div>
         </div>
-
-        <div class="reference-item" data-tube="lavender">
-          <div class="tube-color lavender">
-            <div class="tube-top"></div>
-            <div class="tube-body"></div>
-          </div>
+        <!-- Lavender -->
+        <div class="reference-item">
+          <div class="tube-color lavender"><div class="tube-top"></div><div class="tube-body"></div></div>
           <div class="test-info">
-            <h3>Lavender Tubes</h3>
-            <div class="additive">EDTA K2</div>
+            <h3>Lavender — EDTA</h3>
             <div class="inversions">8-10 inversions</div>
-            <div class="tests">
-              <div class="test">• Reticulocyte Count (Retic)</div>
-              <div class="test">• JAK-2</div>
-              <div class="test">• Homocysteine</div>
-            </div>
+            <div class="tests"><div class="test">• Reticulocyte Count (Retic)</div><div class="test">• JAK-2</div><div class="test">• Homocysteine</div></div>
           </div>
         </div>
       </div>
@@ -87,68 +91,22 @@
       </div>
     </section>
 
-    <!-- Quiz screen -->
-    <section id="quiz" class="card hidden" role="region" aria-live="polite">
-      <div class="row">
-        <div class="label">Test</div>
-        <div id="question" class="value"></div>
-      </div>
-
-      <div class="row">
-        <div class="label">Progress</div>
-        <div id="progress" class="value">Question 1</div>
-      </div>
-
-      <div class="row">
-        <label class="label">Tube</label>
-        <div class="button-group" id="tubeButtons">
-          <button class="btn btn-option" data-value="light-blue">Light Blue</button>
-          <button class="btn btn-option" data-value="plain-red">Plain Red</button>
-          <button class="btn btn-option" data-value="lavender">Lavender</button>
-        </div>
-      </div>
-
-      <div class="row">
-        <label class="label">Inversions</label>
-        <div class="button-group" id="inversionButtons">
-          <button class="btn btn-option" data-value="3-4">3-4</button>
-          <button class="btn btn-option" data-value="5-7">5-7</button>
-          <button class="btn btn-option" data-value="8-10">8-10</button>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button id="check" class="btn btn-full">Check</button>
-        <button id="next" class="btn btn-full hidden">Next</button>
-        <button id="endSession" class="btn btn-ghost right">End Session</button>
-      </div>
-
-      <div id="feedback" class="feedback" role="status"></div>
-    </section>
-
-    <!-- Grade page -->
+    <!-- Results -->
     <section id="gradePage" class="card hidden" role="region" aria-live="polite">
-      <h2>Session Complete!</h2>
-      
+      <h2>Session Complete</h2>
       <div class="grade-summary">
         <div class="grade-display">
           <span id="gradePercent" class="grade-percent">0%</span>
           <span id="gradeLetter" class="grade-letter">F</span>
         </div>
         <div class="grade-stats">
-          <div class="stat">
-            <span class="stat-label">Correct:</span>
-            <span id="correctCount" class="stat-value">0</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Total:</span>
-            <span id="totalCount" class="stat-value">0</span>
-          </div>
+          <div class="stat"><span class="stat-label">Correct</span><span id="correctCount" class="stat-value">0</span></div>
+          <div class="stat"><span class="stat-label">Total</span><span id="totalCount" class="stat-value">0</span></div>
         </div>
       </div>
 
-      <div id="missedQuestions" class="missed-questions">
-        <h3>Questions Missed:</h3>
+      <div class="missed-questions">
+        <h3>Questions Missed</h3>
         <div id="missedList" class="missed-list"></div>
       </div>
 
@@ -160,9 +118,7 @@
   </main>
 
   <footer class="site-footer">
-    <div class="wrap">
-      <small class="muted">v0.1 • Built for classmates</small>
-    </div>
+    <div class="wrap"><small class="muted">v0.5 • Built for classmates</small></div>
   </footer>
 
   <script src="script.js"></script>
