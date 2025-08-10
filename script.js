@@ -148,6 +148,19 @@ const tubes = [
         addMobileFriendlyEvents(btn, 'click', handleButtonClick);
       });
   
+      // Restore previous selections for this test
+      const tid = t.id;
+      if (selections[tid]) {
+        if (selections[tid].tubeId) {
+          const tubeBtn = card.querySelector(`.btn-option[data-kind="tube"][data-value="${selections[tid].tubeId}"]`);
+          if (tubeBtn) tubeBtn.classList.add('selected');
+        }
+        if (selections[tid].inversions) {
+          const invBtn = card.querySelector(`.btn-option[data-kind="inv"][data-value="${selections[tid].inversions}"]`);
+          if (invBtn) invBtn.classList.add('selected');
+        }
+      }
+  
       pairCard.appendChild(card);
     });
   }
