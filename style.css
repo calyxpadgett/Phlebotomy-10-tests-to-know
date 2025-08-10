@@ -45,11 +45,10 @@
   .quiz-grid .btn-option{min-height:48px;font-weight:600;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .btn-option.selected{background:linear-gradient(135deg,var(--accent),#16a34a);color:var(--accent-ink);border-color:transparent}
   
-  .practice-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem}
-  .round-info{flex:1}
+  .session-controls{margin-bottom:1rem;text-align:center}
+  .round-info{margin-bottom:.5rem}
   .main-controls{display:flex;gap:.8rem;align-items:center;margin-top:1rem}
   .next-controls{margin-top:.5rem}
-  .session-controls{margin-top:1rem;text-align:center}
   
   /* tiny tube visuals (not answers) */
   .tube-top{width:18px;height:7px;background:#6b7280;border:1px solid #374151;border-radius:4px 4px 0 0}
@@ -96,8 +95,6 @@
     .quiz-grid{gap:.4rem}
     .quiz-grid .btn-option{min-height:52px;font-size:.95rem}
     .test-card{padding:.8rem}
-    .practice-header{flex-direction:column;gap:.5rem;align-items:stretch}
-    .practice-header .btn-danger{width:100%}
     .main-controls{flex-direction:column;gap:.6rem}
     .main-controls .btn{width:100%}
   }
